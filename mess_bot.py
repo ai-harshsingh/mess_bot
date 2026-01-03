@@ -91,7 +91,6 @@ def button(update, context):
 
 # /today command
 def today_command(update, context):
-    # Current weekday number (Monday=0, Sunday=6)
     day_index = datetime.datetime.now().weekday()
     days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
     day = days[day_index]
@@ -102,8 +101,32 @@ def today_command(update, context):
     text += f"🍛 Lunch: {', '.join(day_menu['lunch'])}\nCommon: {day_menu['lunchCommon']}\n\n"
     text += f"☕ Snacks: {', '.join(day_menu['snacks'])}\n\n"
     text += f"🌙 Dinner: {', '.join(day_menu['dinner'])}\nCommon: {day_menu['dinnerCommon']}"
-
     update.message.reply_text(text)
+
+# Auto-schedule function
+def send_today_menu(context: CallbackContext):
+    chat_id = context.job.context
+    day_index = datetime.datetime.now().weekday()
+    days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
+    day = days[day_index]
+
+    day_menu = menu[day]
+    text = f"🍽 {day.capitalize()} Menu 🍽\n\n"
+    text += f"🌅 Breakfast: {', '.join(day_menu['breakfast'])}\n\n"
+    text += f"🍛 Lunch: {', '.join(day_menu['lunch'])}\nCommon: {day_menu['lunchCommon']}\n\n"
+    text += f"☕ Snacks: {', '.join(day_menu['snacks'])}\n\n"
+    text += f"🌙 Dinner: {', '.join(day_menu['dinner'])}\nCommon: {day_menu['dinnerCommon']}"
+    context.bot.send_message(chat_id=chat_id, text=text)
+
+# Command to start daily schedule
+def start_schedule(update, context):
+    chat_id = update.message.chat_id
+    context.job_queue.run_daily(
+        send_today_menu,
+        time=datetime.time(hour=8, minute=0),
+        context=chat_id
+    )
+    update.message.reply_text("✅ Daily menu schedule set at 8:00 AM!")
 
 # Main function
 def main():
@@ -113,7 +136,8 @@ def main():
 
     dp.add_handler(CommandHandler("menu", menu_command))
     dp.add_handler(CallbackQueryHandler(button))
-    dp.add_handler(CommandHandler("today", today_command))  # 👈 /today handler added
+    dp.add_handler(CommandHandler("today", today_command))
+    dp.add_handler(CommandHandler("startschedule", start_schedule))  # 👈 auto-schedule command
 
     updater.start_polling()
     updater.idle()
