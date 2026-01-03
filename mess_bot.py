@@ -53,7 +53,7 @@ menu = {
     },
     "saturday": {
         "breakfast": ["Methi Parantha", "Aloo Tamatar", "Tea", "Milk"],
-        "lunch": ["Paner Butter Masala", "Moong Dal Takda"],
+        "lunch": ["Paneer Butter Masala", "Moong Dal Takda"],
         "lunchCommon": "Rice, Pickle, Chapati, Salad & Curd",
         "snacks": ["Mix Pakoda", "Saunth", "Tea"],
         "dinner": ["Dal Lehsumi Tadka", "Saag", "Fruit Custard"],
@@ -90,7 +90,9 @@ def button(update, context):
 
 # Main function
 def main():
-    updater = Updater("8511483309:AAFPjaRsndKwEPi-PdjlhoCxeIGJre4rEKc", use_context=True)
+    # Direct token added here
+    TOKEN = "8511483309:AAFPjaRsndKwEPi-PdjlhoCxeIGJre4rEKc"
+    updater = Updater(TOKEN, use_context=True)
     dp = updater.dispatcher
     dp.add_handler(CommandHandler("menu", menu_command))
     dp.add_handler(CallbackQueryHandler(button))
