@@ -1,5 +1,6 @@
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
 from telegram.ext import Updater, CommandHandler, CallbackQueryHandler, CallbackContext
+import datetime
 
 # Mess Menu Dictionary
 menu = {
@@ -88,14 +89,32 @@ def button(update, context):
     text += f"🌙 Dinner: {', '.join(day_menu['dinner'])}\nCommon: {day_menu['dinnerCommon']}"
     query.edit_message_text(text=text)
 
+# /today command
+def today_command(update, context):
+    # Current weekday number (Monday=0, Sunday=6)
+    day_index = datetime.datetime.now().weekday()
+    days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
+    day = days[day_index]
+
+    day_menu = menu[day]
+    text = f"🍽 {day.capitalize()} Menu 🍽\n\n"
+    text += f"🌅 Breakfast: {', '.join(day_menu['breakfast'])}\n\n"
+    text += f"🍛 Lunch: {', '.join(day_menu['lunch'])}\nCommon: {day_menu['lunchCommon']}\n\n"
+    text += f"☕ Snacks: {', '.join(day_menu['snacks'])}\n\n"
+    text += f"🌙 Dinner: {', '.join(day_menu['dinner'])}\nCommon: {day_menu['dinnerCommon']}"
+
+    update.message.reply_text(text)
+
 # Main function
 def main():
-    # Direct token added here
-    TOKEN = "8511483309:AAFPjaRsndKwEPi-PdjlhoCxeIGJre4rEKc"
+    TOKEN = "8511483309:AAFPjaRsndKwEPi-PdjlhoCxeIGJre4rEKc"  # 👈 apna BotFather token yahan daalo
     updater = Updater(TOKEN, use_context=True)
     dp = updater.dispatcher
+
     dp.add_handler(CommandHandler("menu", menu_command))
     dp.add_handler(CallbackQueryHandler(button))
+    dp.add_handler(CommandHandler("today", today_command))  # 👈 /today handler added
+
     updater.start_polling()
     updater.idle()
 
