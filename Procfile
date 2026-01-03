@@ -1,0 +1,1 @@
+worker: python mess_bot.py
