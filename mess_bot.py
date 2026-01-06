@@ -6,17 +6,17 @@ import datetime
 menu = {
     "sunday": {
         "breakfast": ["Mix Parantha", "Curd", "Pickle", "Tea"],
-        "lunch": ["Aloo Tamatar", "Veg. Tehri", "Green Chutney", "Sirka Onion", "Masala Chach"],
+        "lunch": ["Aloo Tamatar", "Veg. Tehri", "Green Chutney", "Sirka Onion", "Masala Chhanch"],
         "lunchCommon": "Rice, Pickle, Chapati, Salad & Curd",
         "snacks": ["Samosa", "Green Chutney", "Tea"],
-        "dinner": ["Green Moong Dal", "Mutar Mushroom"],
+        "dinner": ["Green Moong Dal", "Matar Mushroom"],
         "dinnerCommon": "Rice, Pickle, Chapati, Salad"
     },
     "monday": {
         "breakfast": ["Bread, Jam, Butter", "Aloo peanut poha", "Cornflakes", "Milk", "Tea"],
         "lunch": ["Rajma Raseela", "Lauki Masala"],
         "lunchCommon": "Rice, Pickle, Chapati, Salad & Curd",
-        "snacks": ["Veg Marconi", "Tea"],
+        "snacks": ["Veg Macroni", "Tea"],
         "dinner": ["Kadai Paneer", "Black Masoor Dal"],
         "dinnerCommon": "Rice, Pickle, Chapati, Salad"
     },
@@ -25,7 +25,7 @@ menu = {
         "lunch": ["Kadhi Pakoda", "Aaloo Jeera", "Fryms"],
         "lunchCommon": "Rice, Pickle, Chapati, Salad & Curd",
         "snacks": ["Bhelpuri", "Tea"],
-        "dinner": ["Arhar Dal Takda", "Mix Vegetable", "Gulab Jamun"],
+        "dinner": ["Arhar Dal Tadka", "Mix Vegetable", "Gulab Jamun"],
         "dinnerCommon": "Rice, Pickle, Chapati, Salad"
     },
     "wednesday": {
@@ -46,9 +46,9 @@ menu = {
     },
     "friday": {
         "breakfast": ["Idli", "Sambhar", "Coconut Chutney", "Milk", "Tea"],
-        "lunch": ["Phindi Choley", "Aloo Matar"],
+        "lunch": ["Phindi Chholey", "Aloo Matar"],
         "lunchCommon": "Rice, Pickle, Chapati, Salad & Curd",
-        "snacks": ["Dal Kachori", "Bhagji", "Tea"],
+        "snacks": ["Dal Kachori", "Bhaaji", "Tea"],
         "dinner": ["Mix Dal", "Veg Biryani", "Raita"],
         "dinnerCommon": "Rice, Pickle, Chapati, Salad"
     },
@@ -144,4 +144,5 @@ def main():
 
 if __name__ == '__main__':
     main()
+
 
