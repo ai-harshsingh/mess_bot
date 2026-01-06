@@ -123,7 +123,7 @@ def start_schedule(update, context):
     chat_id = update.message.chat_id
     context.job_queue.run_daily(
         send_today_menu,
-        time=datetime.time(hour=8, minute=0),
+        time=datetime.time(hour=2, minute=30),
         context=chat_id
     )
     update.message.reply_text("✅ Daily menu schedule set at 8:00 AM!")
@@ -144,3 +144,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
